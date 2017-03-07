@@ -14,3 +14,23 @@ fi
 
 # Fix source directory permissions
 fix-permissions ./
+
+
+/***** Adding newrelic agent   *******/
+
+##### Beginning of New Relic Installation #####
+echo "Beginning the deployment of New Relic Java agent"
+
+#Downloading latest agent software
+echo "Downloading the latest java agent from New Relic..."
+curl -o newrelic.zip http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip
+
+#Prepping New Relic files
+echo "New Relic file download complete, unzipping archive..."
+unzip newrelic.zip -d /opt/webserver && cd /opt/webserver/newrelic
+
+#modify config file with license key
+echo "Updating New Relic configuration file..."
+sed -ie "s/<%= license_key %>/${NEWRELIC_LICENSE}/g" newrelic.yml
+sed -ie "s/My Application/${NEWRELIC_APPNAME}/g" newrelic.yml
+echo "New Relic agent install complete"
