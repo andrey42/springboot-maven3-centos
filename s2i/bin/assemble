@@ -12,9 +12,6 @@ else
   mvn clean install
 fi
 
-# Fix source directory permissions
-fix-permissions ./
-
 
 /***** Adding newrelic agent   *******/
 
@@ -34,3 +31,6 @@ echo "Updating New Relic configuration file..."
 sed -ie "s/<%= license_key %>/${NEWRELIC_LICENSE}/g" newrelic.yml
 sed -ie "s/My Application/${NEWRELIC_APPNAME}/g" newrelic.yml
 echo "New Relic agent install complete"
+
+# Fix source directory permissions
+fix-permissions ./
