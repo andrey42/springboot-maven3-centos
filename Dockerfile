@@ -36,4 +36,11 @@ USER 1001
 ENV SHELLSHOCK this_is_fixed1
 ENV BUGFIX 1
 # Set the default CMD to print the usage of the language image
+
+RUN curl -o newrelic.zip http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip && \
+    unzip newrelic.zip && cd newrelic && \
+    sed -ie "s/<%= license_key %>/${NEWRELIC_LICENSE}/g" newrelic.yml && \
+    sed -ie "s/<%= app_name %>/${NEWRELIC_APPNAME}/g" newrelic.yml && \
+    sed -ie "s/My Application/${NEWRELIC_APPNAME}/g" newrelic.yml && cd - \
+
 CMD $STI_SCRIPTS_PATH/usage

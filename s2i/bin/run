@@ -3,4 +3,4 @@
 set -e
 
 echo "---> Starting Spring Boot application"
-java -jar `find target -name *.jar`
+java -javaagent:/opt/app-root/src/newrelic/newrelic.jar  -jar `find target -name *.jar` 
