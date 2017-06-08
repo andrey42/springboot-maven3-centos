@@ -34,7 +34,7 @@ RUN chown -R 1001:0 /opt/app-root
 USER 1001
 
 ENV SHELLSHOCK this_is_fixed1
-ENV BUGFIX 1
+ENV BUGFIX 2
 ENV WEST_SECURITY_BUG_FIX true
 # Set the default CMD to print the usage of the language image
 CMD $STI_SCRIPTS_PATH/usage
